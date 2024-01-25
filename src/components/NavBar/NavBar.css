@@ -1,0 +1,40 @@
+.nav-bar {
+    --darkgrey :#2A475E;
+    background-color: var(--darkgrey);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* .nav-bar-logo {
+    display: flex;
+    justify-content: flex-start;
+    offset-position: left;
+} */
+
+.mist-logo {
+    height: 20px;
+    width: 20px;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    margin: 20px 240px 20px 240px;
+    
+}
+
+.nav-item {
+    font-size: 16px;
+    font-family: 'Duru';
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 0px 5px 0px 5px;
+    color: #c6d4df;
+}
+
+@font-face {
+    font-family: 'Duru';
+    src: local('Duru'), url(../../fonts/DuruSans-Regular.ttf) format('truetype');
+}

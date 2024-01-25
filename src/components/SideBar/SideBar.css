@@ -1,0 +1,21 @@
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.side-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+    width: 200px;
+    height: 200vh;
+    z-index: 1;
+   
+    color: #c6d4df;
+}
+
+.side-bar-containar {
+    z-index: 0;
+}
+
