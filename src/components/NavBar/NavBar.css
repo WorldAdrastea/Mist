@@ -3,20 +3,34 @@
     background-color: var(--darkgrey);
     padding-top: 20px;
     padding-bottom: 20px;
-}
-
-/* .nav-bar-logo {
-    display: flex;
-    justify-content: flex-start;
-    offset-position: left;
-} */
-
-.mist-logo {
-    height: 20px;
-    width: 20px;
+    font-family: 'Duru';
 }
 
 .nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+}
+
+.nav-bar-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+}
+
+.mist-logo {
+    filter: invert(79%) sepia(29%) saturate(276%) hue-rotate(145deg) brightness(85%) contrast(86%);
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -27,14 +41,30 @@
 
 .nav-item {
     font-size: 16px;
-    font-family: 'Duru';
     font-weight: 500;
     text-transform: uppercase;
     margin: 0px 5px 0px 5px;
     color: #c6d4df;
+    text-decoration: none;
 }
 
-@font-face {
-    font-family: 'Duru';
-    src: local('Duru'), url(../../fonts/DuruSans-Regular.ttf) format('truetype');
+.nav-item:hover {
+    color:#59BF40
+}
+
+.nav-download {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#nav-mist {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-family: '64';
+    color: #c6d4df;
+    margin: 0px 0px 0px 10px;
 }

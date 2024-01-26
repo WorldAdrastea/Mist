@@ -1,0 +1,54 @@
+footer {
+    font-family: 'Duru';
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: aliceblue;
+    height: 25vh;   
+}
+
+.footer-intro {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.smallprint {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 10px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #2A475E;
+    color: aliceblue;
+    height: 15vh;
+
+    a {
+        color: aliceblue;
+    }
+}
+
+.footer-content:visited {
+    a {
+        text-decoration: none;
+    }
+}
+
+.content-item {
+    margin: 0px 5px 0 5px;
+}
+
+.social-media {
+    height: 20px;
+    width: 20px;
+    text-decoration: none;
+}

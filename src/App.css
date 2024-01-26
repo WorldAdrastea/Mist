@@ -1,0 +1,28 @@
+/* Color Palette 
+
+
+dark Grey: #2A475E
+font light: #c6d4df
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+@font-face {
+    font-family: 'Duru';
+    src: local('Duru'), url(./fonts/DuruSans-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: '64';
+    src: local('64'), url(./fonts/Sixtyfour-Regular.ttf) format('truetype');
+}
