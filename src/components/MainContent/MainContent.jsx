@@ -8,9 +8,7 @@ export default function MainContent() {
     const [featured, setFeatured] = useState();
     const [loading, setLoading] = useState(true)
 
-    const apiKey = process.env.REACT_APP_API_KEY 
-    console.log(apiKey)
-    console.log(process.env)
+    const apiKey = process.env.REACT_APP_API_KEY
     const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}&page_size=862179`
 
     const handleImageLoad = () => {
@@ -18,6 +16,8 @@ export default function MainContent() {
     }
 
     useEffect(() => {
+        let isMounted = true;
+
         const fetchData = async () => {
             try {
                 const response = await fetch(apiUrl);
@@ -28,13 +28,19 @@ export default function MainContent() {
                 console.log("Random Index: ", randomIndex)
                     
                 setFeatured(data.results[randomIndex])
-                setLoading(false);
             } catch (error) {
                 console.error('Error fetching data: ', error);
-                setLoading(false);
+                if (isMounted) {
+                    setLoading(false);
+                }
             }
         };
+        console.log("useEffect is running");
         fetchData();
+
+        return () => {
+            isMounted = false;
+        }
     }, [apiUrl]);
 
 

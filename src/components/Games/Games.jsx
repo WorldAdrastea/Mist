@@ -7,7 +7,6 @@ import 'slick-carousel/slick/slick-theme.css'
 import Slider from "react-slick";
 
 export default function Games() {
-    // console.log("Featured Game: ", featuredGame)
     const [games, setGames] = useState([]);
     const [currentSlide, setCurrentSlide] = useState(0);
     const apiKey = process.env.REACT_APP_API_KEY
