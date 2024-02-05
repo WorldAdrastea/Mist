@@ -11,12 +11,8 @@ export default function MainContent() {
     const apiKey = process.env.REACT_APP_API_KEY
     const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}&page_size=862179`
 
-    const handleImageLoad = () => {
-        setLoading(false);
-    }
-
+    //Running twice in dev because of StrictMode from index.js
     useEffect(() => {
-        let isMounted = true;
 
         const fetchData = async () => {
             try {
@@ -30,35 +26,31 @@ export default function MainContent() {
                 setFeatured(data.results[randomIndex])
             } catch (error) {
                 console.error('Error fetching data: ', error);
-                if (isMounted) {
-                    setLoading(false);
-                }
+            } finally {
+                setLoading(false);
             }
         };
+
         console.log("useEffect is running");
         fetchData();
 
-        return () => {
-            isMounted = false;
-        }
     }, [apiUrl]);
 
 
     return (
         <div className="main-content">
             <div className="main-content-image-wrapper"> 
-            {featured && (
+            {featured && !loading && (
                 <img
                     src={featured.background_image}
                     alt={featured.name}
                     style={{display: loading ? "none" : "block"}}
-                    onLoad={handleImageLoad}
                 />
             )}
             </div>
             <div className="game-content">
                 <SideBar/>
-                <Games featuredGame={featured}/>
+                <Games />
             </div>
             <FooterBar/>
         </div>

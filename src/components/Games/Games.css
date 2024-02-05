@@ -1,5 +1,7 @@
 main {
-    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
     margin-right: auto;
     width: 90vh;
     height: fit-content;
@@ -25,6 +27,10 @@ main {
     height: 100%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.game-images:hover::after {
+    content:attr()
 }
 
 #games-content-title {

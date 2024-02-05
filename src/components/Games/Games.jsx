@@ -9,8 +9,17 @@ import Slider from "react-slick";
 export default function Games() {
     const [games, setGames] = useState([]);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [hovered, setHovered] = useState(false);
     const apiKey = process.env.REACT_APP_API_KEY
-    const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}`
+    const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}&page_size=20`
+
+    const handleMouseEnter = () => {
+        setHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setHovered(false);
+    }
 
     var settings = {
         dots: true,
@@ -53,14 +62,45 @@ export default function Games() {
                 <Slider className="slideshow" {...settings}>
                     {games.map((game, index) => (
                         <div className="black-container">
-                            <div key={game.id} className={index === currentSlide ? 'slide active' : 'slide'}>
-                                <img src={game.background_image} alt={game.name} className="game-images"/>
+                            <div 
+                                key={game.id} 
+                                className={index === currentSlide ? 'slide active' : 'slide'}
+                            >
+                                <img 
+                                    src={game.background_image} 
+                                    alt={game.name} className="game-images"
+                                    onMouseEnter={handleMouseEnter}
+                                    onMouseLeave={handleMouseLeave}
+                                />
                                 <h3>{game.name}</h3>
                                 <p>Genres: {game.genres.map(genre => genre.name).join(', ')}</p>
                             </div>
                         </div>
                     ))}
                 </Slider>
+            )}
+            {hovered && (
+                <div className="games-popup">
+                    {games.map((game, index) => (
+                    <div
+                        key={game.id}
+                        className={index === currentSlide ? 'slide active' : 'slide'}
+                    >
+                        <h2>
+                            {game.name}
+                        </h2>
+                        <h3>
+                            {game.created}
+                        </h3>
+                        <img 
+                            src={game.background_image_additional}
+                            alt={game.name}
+                            className="games-popup-image"
+                        />
+                    </div>
+                    ))}
+                    
+                </div>
             )}
         </main>
     )
