@@ -9,16 +9,16 @@ import Slider from "react-slick";
 export default function Games() {
     const [games, setGames] = useState([]);
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [hovered, setHovered] = useState(false);
+    const [hoveredIndex, setHoveredIndex] = useState(null);
     const apiKey = process.env.REACT_APP_API_KEY
     const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}&page_size=20`
 
-    const handleMouseEnter = () => {
-        setHovered(true);
+    const handleMouseEnter = (index) => {
+        setHoveredIndex(index);
     };
 
     const handleMouseLeave = () => {
-        setHovered(false);
+        setHoveredIndex(null);
     }
 
     var settings = {
@@ -55,53 +55,53 @@ export default function Games() {
 
     return (
         <main>
-            <h2 id='games-content-title'>
-                Featured Games
-            </h2>
-            {games.length > 0 && (
-                <Slider className="slideshow" {...settings}>
-                    {games.map((game, index) => (
-                        <div className="black-container">
-                            <div 
-                                key={game.id} 
-                                className={index === currentSlide ? 'slide active' : 'slide'}
-                            >
-                                <img 
-                                    src={game.background_image} 
-                                    alt={game.name} className="game-images"
-                                    onMouseEnter={handleMouseEnter}
-                                    onMouseLeave={handleMouseLeave}
-                                />
-                                <h3>{game.name}</h3>
-                                <p>Genres: {game.genres.map(genre => genre.name).join(', ')}</p>
+            <div>
+                <h2 id='games-content-title'>
+                    Featured Games
+                </h2>
+                <div className="slide-container">
+                {games.length > 0 && (
+                    <Slider className="slideshow" {...settings}>
+                        {games.map((game, index) => (
+                            <div className="black-container">
+                                <div 
+                                    key={game.id} 
+                                    className={index === currentSlide ? "slide active" : "slide"}
+                                >
+                                    <img 
+                                        src={game.background_image} 
+                                        alt={game.name} 
+                                        className="game-images"
+                                        onMouseEnter={() => handleMouseEnter(index)}
+                                        onMouseLeave={handleMouseLeave}
+                                    />
+                                    <h3>{game.name}</h3>
+                                    <p>Genres: {game.genres.map(genre => genre.name).join(', ')}</p>
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </Slider>
-            )}
-            {hovered && (
+                        ))}
+                    </Slider>
+                )}
+                </div>
+            </div>
+            {hoveredIndex !== null && (
                 <div className="games-popup">
-                    {games.map((game, index) => (
-                    <div
-                        key={game.id}
-                        className={index === currentSlide ? 'slide active' : 'slide'}
-                    >
-                        <h2>
-                            {game.name}
-                        </h2>
-                        <h3>
-                            {game.created}
-                        </h3>
+                    <div className="slide active">
+                        <h2>{games[hoveredIndex].name}</h2>
+                        <h3>Released: {games[hoveredIndex].released}</h3>
                         <img 
-                            src={game.background_image_additional}
-                            alt={game.name}
+                            src={games[hoveredIndex].background_image}
+                            alt={games[hoveredIndex].name}
                             className="games-popup-image"
                         />
+                        <p className="game-platforms">Platforms: {games[hoveredIndex].platforms.map(platform => platform.platform.name).join(', ')}</p>
+                        <p>Genres: {games[hoveredIndex].genres.map(genre => genre.name).join(', ')}</p>
                     </div>
-                    ))}
-                    
                 </div>
             )}
+            <div className="special-banner">
+                <p>Special Offer</p>
+            </div>
         </main>
     )
 }
