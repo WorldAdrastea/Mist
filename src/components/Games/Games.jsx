@@ -3,8 +3,9 @@ import './Games.css'
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css'
-
 import Slider from "react-slick";
+
+import specialOffer from '../../imgs/specialoffer.jpg'
 
 export default function Games() {
     const [games, setGames] = useState([]);
@@ -99,9 +100,11 @@ export default function Games() {
                     </div>
                 </div>
             )}
-            <div className="special-banner">
-                <p>Special Offer</p>
-            </div>
+            <a href="/">
+                <div className="special-banner">
+                    <img src={specialOffer} alt="special-offer" id="special-offer-banner"/>
+                </div>
+            </a>
         </main>
     )
 }

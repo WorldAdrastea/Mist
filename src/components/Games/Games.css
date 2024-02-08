@@ -42,18 +42,20 @@ main {
 }
 
 .special-banner {
-    background-color: red;
     border: 3px solid black;
     margin-top: 35px;
     height: 100px;
-    
-    p {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+    overflow: hidden;
+
+    img {
+        object-fit: cover;
+        height: 200px;
+        width: 100%;
     }
+}
+
+.special-banner:hover {
+    box-shadow: 0 0 10px 5px rgba(0, 238, 255, 0.7);
 }
 
 #games-content-title {
