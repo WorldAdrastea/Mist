@@ -14,6 +14,7 @@ export default function Games() {
     const apiKey = process.env.REACT_APP_API_KEY
     const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}&page_size=862179`;
 
+    //Handles popup image when hovering over image of carousel
     const handleMouseEnter = (index) => {
         setHoveredIndex(index);
     };
@@ -22,6 +23,7 @@ export default function Games() {
         setHoveredIndex(null);
     }
 
+    //Settings for carousel
     var settings = {
         dots: true,
         infinite: true,
@@ -30,6 +32,7 @@ export default function Games() {
         slidesToScroll: 1,
     };
 
+    //useEffect to handle fetching games and randomizes order of games and takes 20
     useEffect(() => {
         fetch(apiUrl)
             .then(response => response.json())
@@ -46,8 +49,8 @@ export default function Games() {
             });
     }, [apiUrl]);
 
+    //Timer for carousel
     useEffect(() => {
-
         const timer = setInterval(() => {
             setCurrentSlide(current => (current + 1) % games.length);
         }, 3000);
