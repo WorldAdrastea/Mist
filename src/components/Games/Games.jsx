@@ -12,7 +12,7 @@ export default function Games() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const apiKey = process.env.REACT_APP_API_KEY
-    const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}&page_size=20`
+    const apiUrl = `https://api.rawg.io/api/games?key=${apiKey}&page_size=862179`;
 
     const handleMouseEnter = (index) => {
         setHoveredIndex(index);
@@ -34,8 +34,12 @@ export default function Games() {
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-                setGames(data.results)
+                console.log("Games section data: ", data);
+
+                const shuffledGames = data.results.sort(() => Math.random() - 0.5);
+
+                const randomGames = shuffledGames.slice(0, 20);
+                setGames(randomGames)
             })
             .catch(error => {
                 console.error('Error fetching data: ', error);
